@@ -14,6 +14,7 @@ typedef struct s_complex
 
 } t_complex;
 
+//haha
 
 //for mac, change the flags, include a library to make it work.
 int main()
