@@ -1,31 +1,53 @@
-NAME = fractol
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
+NAME				=	fractol.a
 
-SRCS = main.c
-OBJS = $(SRCS:.c=.o)
+# Compiler and CFlags
+CC					=	cc
+CFLAGS				=	-Wall -Werror -Wextra
+RM					=	rm -f
 
-all: $(NAME)
+# Determine the platform
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Darwin)
+	LIBS = -L./minilibx-macos -lmlx -framework OpenGL -framework AppKit
+	MLX = ./minilibx-macos/libmlx.a
+#	INC = -Iinc -Iminilibx-macos
+endif
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(NAME)
+SRCS					=	main.c \
+
+OBJ 				= 	$(SRCS:.c=.o)
+
+
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
+
+all: 					$(MLX)  $(NAME)
+
+$(NAME): 				$(OBJ) $(MLX)
+						$(CC) $(OBJ) $(MLX) $(LIBS) -o $(NAME)
+
 
 $(MLX):
-						@if [ "$(UNAME_S)" = "Linux" ]; then \
-							make -sC ./minilibx-linux; \
-						else \
-							make -sC ./minilibx-macos; \
-						fi
+						@$(MAKE) -sC $(dir $(MLX)) CFLAGS="-w"
+
+
+
+# Compile object files from source files
+$(OBJ_DIR)%.o:			$(SRC_DIR)%.c
+						@mkdir -p $(@D)
+						@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	RM $(NAME)
-	RM $(OBJS)
+						@$(RM) -r $(OBJ_DIR)
+						@make clean -C $(dir $(MLX))
 
-fclean : clean
-	RM $(NAME)
+fclean: 				clean
+						@$(RM) $(NAME)
+						@$(RM) $(MLX)
 
-re: fclean all
+re: 					fclean all
 
-.PHONY: all clean fclean re
+# Phony targets represent actions not files
+.PHONY: 				all clean fclean re

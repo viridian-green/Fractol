@@ -21,7 +21,7 @@ int main()
 {
 	t_complex z;
 	t_complex c;
-	double temp;
+//	double temp;
 
 	z.real = 0;
 	z.i = 0;
@@ -29,11 +29,12 @@ int main()
 	c.real = 2;
 	c.i = 5;
 
-	int i = 0;
-	while (i < 42)
-	{
-		temp = (z.real * z.real)
-	}
+	printf("hey");
+	//int i = 0;
+	//while (i < 42)
+	//{
+	//	temp = (z.real * z.real);
+	//}
 
 
 }
