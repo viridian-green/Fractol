@@ -11,7 +11,7 @@ typedef struct s_complex
 
 	//imaginary n
 	double i;
-
+	
 } t_complex;
 
 //haha
