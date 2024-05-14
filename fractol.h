@@ -3,6 +3,23 @@
 
 # include "/Users/adelemartin/Fractol/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <stdlib.h>
+
+typedef struct s_complex
+{
+	//real n
+	double real;
+
+	//imaginary n
+	double i;
+
+} t_complex;
+
+typedef struct s_data
+{
+	//img
+
+} t_data;
 
 //Window dimensions
 # define WIDTH	1000

@@ -4,20 +4,9 @@
 leave it, you enter infinity.
 A mandelbrot point always stays bounded within mandelbrot zone/*/
 
-typedef struct s_complex
-{
-	//real n
-	double real;
+/*https://pulgamecanica.herokuapp.com/posts/mlx42-intro*/
 
-	//imaginary n
-	double i;
-
-} t_complex;
-
-//haha
-
-//for mac, change the flags, include a library to make it work.
-int main()
+void function()
 {
 	t_complex z;
 	t_complex c;
@@ -28,9 +17,6 @@ int main()
 
 	c.real = 2;
 	c.i = 5;
-	void	*mlx_ptr;
-
-	mlx_ptr = mlx_init();
 
 	//int i = 0;
 	//while (i < 42)
@@ -38,5 +24,20 @@ int main()
 	//	temp = (z.real * z.real);
 	//}
 
+}
 
+//for mac, change the flags, include a library to make it work.
+int main()
+{
+	void	*mlx_ptr;
+
+	mlx_ptr = mlx_init(WIDTH, HEIGHT, "Fractol", false);
+	if (!mlx_ptr)
+	{
+		return (1);
+		exit(1);
+	}
+	mlx_texture_t* texture = mlx_load_png("./images/menu_bg.png")
+
+	//mlx_delete_image(mlx_ptr, img);
 }
