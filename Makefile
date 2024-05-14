@@ -7,8 +7,9 @@ LIBA = libmlx42.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror # -fsanitize=address
 RM = rm -f
-SRC = main.c \
-all: $(NAME)
+SRC = main.c
+all: fractol
+OBJ = $(SRC:.c=.o)
 %.o: %.c
 	$(CC) $(CFLAGS) -O3 -c $< -o $@
 #linux: $(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@

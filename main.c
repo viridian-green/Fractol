@@ -11,7 +11,7 @@ typedef struct s_complex
 
 	//imaginary n
 	double i;
-	
+
 } t_complex;
 
 //haha
@@ -32,8 +32,7 @@ int main()
 
 	mlx = mlx_init();
 	void	*mlx_win;
-
-	mlx = mlx_init();
+	
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	mlx_loop(mlx);
 	//int i = 0;
