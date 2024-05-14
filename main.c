@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "fractol.h"
 
 /*The Mandelbrot set binds the points outside infinity. When you
 leave it, you enter infinity.
@@ -28,8 +28,14 @@ int main()
 
 	c.real = 2;
 	c.i = 5;
+	void	*mlx;
 
-	printf("hey");
+	mlx = mlx_init();
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 	//int i = 0;
 	//while (i < 42)
 	//{

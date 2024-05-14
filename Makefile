@@ -1,53 +1,33 @@
-
-NAME				=	fractol.a
-
-# Compiler and CFlags
-CC					=	cc
-CFLAGS				=	-Wall -Werror -Wextra
-RM					=	rm -f
-
-# Determine the platform
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S), Darwin)
-	LIBS = -L./minilibx-macos -lmlx -framework OpenGL -framework AppKit
-	MLX = ./minilibx-macos/libmlx.a
-#	INC = -Iinc -Iminilibx-macos
-endif
-
-SRCS					=	main.c \
-
-OBJ 				= 	$(SRCS:.c=.o)
-
-
+NAME = so_long
+#LIB = ./MLX42/build
+LIB = /Users/adelemartin/Fractol/MLX42/build
+#LIB = ./MLX42/build
+LIBA = libmlx42.a
+#LIB = ./minilibx-linux
+#LIBA = libmlx.a
+LIBFT = libft
+LIBFA = libft.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror # -fsanitize=address
+RM = rm -f
+SRC = *.c \
+all: so_long
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+    $(CC) $(CFLAGS) -O3 -c $< -o $@
 
-
-all: 					$(MLX)  $(NAME)
-
-$(NAME): 				$(OBJ) $(MLX)
-						$(CC) $(OBJ) $(MLX) $(LIBS) -o $(NAME)
-
-
-$(MLX):
-						@$(MAKE) -sC $(dir $(MLX)) CFLAGS="-w"
-
-
-
-# Compile object files from source files
-$(OBJ_DIR)%.o:			$(SRC_DIR)%.c
-						@mkdir -p $(@D)
-						@$(CC) $(CFLAGS) -c $< -o $@
-
+$(NAME): $(SRC) $(LIB)/$(LIBA) $(LIBFT)/$(LIBFA)
+    $(CC) $(CFLAGS) $(SRC) -L$(LIB) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -ldl -lm -lpthread -o $(NAME)
+#linux: $(CC) $(CFLAGS) $(SRC) -L$(LIB) $(LIBFT)/$(LIBFA) -L/usr/MLX42 -lmlx42 -ldl -lglfw -lm -lpthread -o $(NAME)
+$(LIB)/$(LIBA):
+    @$(MAKE) -C $(LIB)
+$(LIBFT)/$(LIBFA):
+    @$(MAKE) -C $(LIBFT)
 clean:
-						@$(RM) -r $(OBJ_DIR)
-						@make clean -C $(dir $(MLX))
-
-fclean: 				clean
-						@$(RM) $(NAME)
-						@$(RM) $(MLX)
-
-re: 					fclean all
-
-# Phony targets represent actions not files
-.PHONY: 				all clean fclean re
+    make -C $(LIB) clean
+    make -C $(LIBFT) clean
+fclean: clean
+    make -C $(LIB) fclean
+    make -C $(LIBFT) fclean
+    $(RM) $(NAME)
+re: fclean all
+.PHONY: all clean fclean re

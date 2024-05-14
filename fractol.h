@@ -1,7 +1,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "minilibx-macos/mlx.h"
+# include "mlx.h"
 # include <math.h>
 
 //Window dimensions
