@@ -28,13 +28,10 @@ int main()
 
 	c.real = 2;
 	c.i = 5;
-	void	*mlx;
+	void	*mlx_ptr;
 
-	mlx = mlx_init();
-	void	*mlx_win;
-	
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
+	mlx_ptr = mlx_init();
+
 	//int i = 0;
 	//while (i < 42)
 	//{
