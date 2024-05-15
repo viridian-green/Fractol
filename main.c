@@ -4,8 +4,6 @@
 leave it, you enter infinity.
 A mandelbrot point always stays bounded within mandelbrot zone/*/
 
-/*https://pulgamecanica.herokuapp.com/posts/mlx42-intro*/
-
 void function()
 {
 	t_complex z;
@@ -29,10 +27,11 @@ void function()
 //for mac, change the flags, include a library to make it work.
 int main(int argc, char **argv)
 {
-	if (argc <= 1)
+	if (argc == 1)
 	{
-		
+		printf("hey");
 	}
+
 	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init(WIDTH, HEIGHT, "Fractol", false);
@@ -41,8 +40,10 @@ int main(int argc, char **argv)
 		return (1);
 		exit(1);
 	}
+	/*
 	if (mlx_image_to_window(mlx_ptr, img, 0, 0) < 0)
         error();
-
+	*/
+	(void)argv;
 	//mlx_delete_image(mlx_ptr, img);
 }

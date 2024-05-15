@@ -6,7 +6,7 @@
 #    By: ademarti <adelemartin@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 14:07:38 by ademarti          #+#    #+#              #
-#    Updated: 2024/05/15 12:07:28 by ademarti         ###   ########.fr        #
+#    Updated: 2024/05/15 12:36:12 by ademarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,12 @@ OBJS			= $(SRCS:.c=.o)
 
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -I. -g
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(NAME) $(OBJS)
+				ar rcs $(NAME) $(OBJS)
 
 clean:
 				$(RM) $(OBJS)
