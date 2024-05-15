@@ -27,8 +27,12 @@ void function()
 }
 
 //for mac, change the flags, include a library to make it work.
-int main()
+int main(int argc, char **argv)
 {
+	if (argc <= 1)
+	{
+		
+	}
 	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init(WIDTH, HEIGHT, "Fractol", false);
