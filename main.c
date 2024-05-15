@@ -29,9 +29,9 @@ int main(int argc, char **argv)
 {
 	if (argc == 1)
 	{
-		printf("hey");
+		ft_putstr("Please enter a parameter.");
 	}
-
+	/*
 	void	*mlx_ptr;
 
 	mlx_ptr = mlx_init(WIDTH, HEIGHT, "Fractol", false);
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 		return (1);
 		exit(1);
 	}
-	/*
+
 	if (mlx_image_to_window(mlx_ptr, img, 0, 0) < 0)
         error();
 	*/
