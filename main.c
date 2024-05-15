@@ -37,7 +37,8 @@ int main()
 		return (1);
 		exit(1);
 	}
-	mlx_texture_t* texture = mlx_load_png("./images/menu_bg.png")
+	if (mlx_image_to_window(mlx_ptr, img, 0, 0) < 0)
+        error();
 
 	//mlx_delete_image(mlx_ptr, img);
 }

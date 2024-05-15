@@ -17,7 +17,8 @@ typedef struct s_complex
 
 typedef struct s_data
 {
-	//img
+	mlx_t		*mlx;
+	mlx_image_t	*img;
 
 } t_data;
 
