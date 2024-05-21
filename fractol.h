@@ -1,13 +1,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "/Users/adelemartin/Fractol/MLX42/include/MLX42/MLX42.h"
+# include "minilibx/mlx_int.h"
+# include "minilibx/mlx.h"
 # include <math.h>
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_complex
+typedef struct s_complexss
 {
 	//real n
 	double real;
@@ -17,12 +18,12 @@ typedef struct s_complex
 
 } t_complex;
 
-typedef struct s_data
+typedef struct s_fractal
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-
-} t_data;
+	void *mlx_ptr;
+	void *win;
+	t_img img;
+} t_fractal;
 
 //Window dimensions
 # define WIDTH	1000
