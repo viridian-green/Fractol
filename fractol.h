@@ -5,8 +5,6 @@
 # include "minilibx/mlx.h"
 # include <math.h>
 # include "libft/libft.h"
-# include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_complex
 {

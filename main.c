@@ -4,18 +4,12 @@
 void mandelbrot_set(t_fractal *fractal, double x_min, double x_max, double y_min, double y_max)
 {
 	//a + bi
-	int z = 
+	int z =
 	while (z < 41)
 	{
 		z = (z * z);
 	}
 	//(a + bi)² or (a + bi) * (a + bi)
-}
-
-int handle_arguments(t_fractal *fractal, char **argv)
-{
-	fractal->name = argv[1];
-
 }
 
 void pixels_to_screen(t_fractal *fractal)
@@ -36,6 +30,20 @@ void pixels_to_screen(t_fractal *fractal)
 
 }
 */
+
+double atof(const char *str);
+
+int handle_arguments(t_fractal *fractal, char **argv)
+{
+	fractal->name = argv[1];
+	if (ft_strncmp(fractal->name, "mandelbrot"));
+		return (1);
+	else if (ft_strncmp(fractal->name, "julia"));
+		return (1);
+	else
+		return (0);
+}
+
 int fractal_init(t_fractal *fractal)
 {
 	fractal->mlx_ptr = mlx_init();
@@ -60,14 +68,13 @@ int fractal_init(t_fractal *fractal)
 	return (0);
 }
 
-
-
 int main(int argc, char **argv)
 {
 	t_fractal	fractal;
 	if (argc == 2)
 	{
-	//handle_arguments(&argv, &fractal);
+	if (handle_arguments(&argv, &fractal) == 0)
+		return (0);
 	fractal_init(&fractal);
 	//mandelbrot_set(&fractal, -2, 2, -2, 2);
 	//pixels_to_screen(&fractal);
