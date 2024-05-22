@@ -8,21 +8,31 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_complexss
+typedef struct s_complex
 {
 	//real n
 	double real;
 
 	//imaginary n
-	double i;
+	double imag;
 
 } t_complex;
+
+typedef struct	s_image
+{
+	void	*img_ptr;
+	char	*pixel;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_image;
 
 typedef struct s_fractal
 {
 	void *mlx_ptr;
 	void *win;
-	t_img img;
+	t_image image;
+	char *name;
 } t_fractal;
 
 //Window dimensions
