@@ -5,7 +5,7 @@ void mandelbrot_set(t_fractal *fractal, double x_min, double x_max, double y_min
 	//a + bi
 	while (z < 41)
 	{
-		z = (z * z)
+		z = (z * z)+
 	}
 	//(a + bi)² or (a + bi) * (a + bi)
 }
