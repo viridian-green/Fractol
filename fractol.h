@@ -5,6 +5,7 @@
 # include "minilibx/mlx.h"
 # include <math.h>
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct s_complex
 {
@@ -31,6 +32,8 @@ typedef struct s_fractal
 	void *win;
 	t_image image;
 	char *name;
+	double first_param;
+	double second_param;
 } t_fractal;
 
 //Window dimensions
