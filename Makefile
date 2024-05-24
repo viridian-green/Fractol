@@ -7,7 +7,10 @@ NAME = fractol
 LIBFT = libft/libft.a
 MLX = minilibx/libmlx.a
 
-SRC = main.c
+SRC = 	main.c \
+		utils.c \
+		mandelbrot.c \
+
 
 OBJ = $(SRC:.c=.o)
 
