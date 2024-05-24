@@ -22,7 +22,7 @@ typedef struct	s_image
 	void	*img_ptr;
 	char	*pixel;
 	int		bpp;
-	int		line_len;
+	int		size_line;
 	int		endian;
 }	t_image;
 
@@ -32,8 +32,8 @@ typedef struct s_fractal
 	void	*win;
 	t_image	image;
 	char	*name;
-	double	first_param;
-	double	second_param;
+	char	*first_param;
+	char 	*second_param;
 	double	x_max;
 	double	x_min;
 	double	y_max;
@@ -49,7 +49,12 @@ typedef struct s_fractal
 //Utils
 double ft_atof(const char *str);
 
+//Initialization
+void init_values(t_fractal *fractal);
+
 //Mandelbrot
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color);
+void mandelbrot_set(t_fractal *fractal);
+void math(t_complex *comp, int x, int y, t_fractal *fractal);
 
 #endif

@@ -62,7 +62,7 @@ int fractal_init(t_fractal *fractal)
 
 	//allows us to modify the image later
 	fractal->image.pixel = mlx_get_data_addr(fractal->image.img_ptr,
-	&fractal->image.bpp, &fractal->image.line_len, &fractal->image.endian);
+	&fractal->image.bpp, &fractal->image.size_line, &fractal->image.endian);
 
 	return (0);
 }
@@ -73,8 +73,8 @@ int main(int argc, char **argv)
 	//if (handle_arguments(&fractal, argv) == 0)
 	//	return (0);
 	fractal_init(&fractal);
-	mandelbrot_set(&fractal, -2, 2, -2, 2);
-	//mlx_key_hook(fractal.win, f, &fractal)
+	init_values(&fractal);
+	mandelbrot_set(&fractal);
 	//mlx_loop(fractal.mlx_ptr);
 	(void)argv;
 	mlx_destroy_window(fractal.mlx_ptr, fractal.win);
