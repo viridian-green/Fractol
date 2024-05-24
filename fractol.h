@@ -43,8 +43,8 @@ typedef struct s_fractal
 } t_fractal;
 
 //Window dimensions
-# define WIDTH	1000
-# define HEIGHT	1000
+# define WIDTH	800
+# define HEIGHT	800
 
 //Utils
 double ft_atof(const char *str);

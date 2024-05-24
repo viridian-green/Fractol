@@ -25,7 +25,7 @@ void init_values(t_fractal *fractal)
 	fractal->x_min = -2.0;
 	fractal->y_max = 2.0;
 	fractal->y_min = -2.0;
-	fractal->max_iter = 50; //Change this value to see if it still works
+	fractal->max_iter = 1000; //Change this value to see if it still works
 }
 
 void math(t_complex *comp, int x, int y, t_fractal *fractal)
@@ -34,8 +34,8 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	t_complex c;
 	double temp;
 
-	z.x = 0;
-	z.y = 0;
+	z.x = 0.0;
+	z.y = 0.0;
 	c.x = comp->x; //add move_y and move_x later for the zoom
 	c.y = comp->y;
 	fractal->iter = 0;
@@ -52,7 +52,6 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	else
 		my_mlx_pixel_put(x, y, fractal, 0xFFFFFF); //Case 1
 
-
 }
 
 void mandelbrot_set(t_fractal *fractal)
@@ -64,16 +63,15 @@ void mandelbrot_set(t_fractal *fractal)
 	x = -1;
 	y = -1;
 
-
 	while (++y < HEIGHT)
 	{
-		x = 0;
+		x = -1;
 		while (++x < WIDTH)
 		{
 			comp = map_pixel(&comp, x, y, fractal);
 			math(&comp, x, y, fractal);
 		}
 	}
-	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win, fractal->image.img_ptr, x, y);
+	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win, fractal->image.img_ptr, 0, 0);
 	mlx_loop(fractal->mlx_ptr);
 } 

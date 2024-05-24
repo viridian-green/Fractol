@@ -1,25 +1,5 @@
 #include "fractol.h"
 
-/*
-void pixels_to_screen(t_fractal *fractal)
-{
-	int x;
-	int y;
-
-	x = -1;
-	y = -1;
-
-	while (++y < HEIGHT)
-	{
-		while (++x < WIDTH)
-		{
-
-		}
-	}
-}
-*/
-
-
 int handle_arguments(t_fractal *fractal, char **argv)
 {
 	fractal->name = argv[1];
@@ -44,7 +24,7 @@ int fractal_init(t_fractal *fractal)
 	if (!fractal->mlx_ptr)
 		return (1);
 
-	fractal->win = mlx_new_window(fractal->mlx_ptr, WIDTH, HEIGHT, "fractal window");
+	fractal->win = mlx_new_window(fractal->mlx_ptr, WIDTH, HEIGHT, "I <3 fractals");
 	if (fractal->win == NULL)
 	{
 		mlx_destroy_display(fractal->mlx_ptr);
@@ -59,7 +39,6 @@ int fractal_init(t_fractal *fractal)
 		free(fractal->mlx_ptr);
 		return (1);
 	}
-
 	//allows us to modify the image later
 	fractal->image.pixel = mlx_get_data_addr(fractal->image.img_ptr,
 	&fractal->image.bpp, &fractal->image.size_line, &fractal->image.endian);
@@ -75,7 +54,7 @@ int main(int argc, char **argv)
 	fractal_init(&fractal);
 	init_values(&fractal);
 	mandelbrot_set(&fractal);
-	//mlx_loop(fractal.mlx_ptr);
+	mlx_loop(fractal.mlx_ptr);
 	(void)argv;
 	mlx_destroy_window(fractal.mlx_ptr, fractal.win);
 	mlx_destroy_display(fractal.mlx_ptr);
