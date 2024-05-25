@@ -48,10 +48,23 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 			break;
 	}
 	if (fractal->iter == fractal->max_iter)
-		my_mlx_pixel_put(x, y, fractal, 0x000000); //Case 2
+		my_mlx_pixel_put(x, y, fractal, 0x000000 * fractal->iter); //Case 2
 	else
-		my_mlx_pixel_put(x, y, fractal, 0xFFFFFF); //Case 1
+		my_mlx_pixel_put(x, y, fractal, 0xFFFFFF * fractal->iter); //Case 1
 
+}
+
+int handle_keys(int key, t_fractal *fractal)
+{
+	//t_fractal *p;
+	//p = fractal;
+	if (key == 65293)
+	{
+		mlx_destroy_window(fractal->mlx_ptr, fractal->win);
+		exit(0);
+	}
+	//mlx_clear_window(fractal->mlx_ptr, fractal->win);
+	return (0);
 }
 
 void mandelbrot_set(t_fractal *fractal)
@@ -73,5 +86,4 @@ void mandelbrot_set(t_fractal *fractal)
 		}
 	}
 	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win, fractal->image.img_ptr, 0, 0);
-	mlx_loop(fractal->mlx_ptr);
 } 

@@ -43,8 +43,8 @@ typedef struct s_fractal
 } t_fractal;
 
 //Window dimensions
-# define WIDTH	800
-# define HEIGHT	800
+# define WIDTH	1000
+# define HEIGHT	1000
 
 //Utils
 double ft_atof(const char *str);
@@ -56,5 +56,7 @@ void init_values(t_fractal *fractal);
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color);
 void mandelbrot_set(t_fractal *fractal);
 void math(t_complex *comp, int x, int y, t_fractal *fractal);
+
+int handle_keys(int key, t_fractal *fractal);
 
 #endif
