@@ -63,7 +63,7 @@ int handle_keys(int key, t_fractal *fractal)
 		mlx_destroy_window(fractal->mlx_ptr, fractal->win);
 		exit(0);
 	}
-	//mlx_clear_window(fractal->mlx_ptr, fractal->win);
+	mlx_clear_window(fractal->mlx_ptr, fractal->win);
 	return (0);
 }
 
