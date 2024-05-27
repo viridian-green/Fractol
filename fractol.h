@@ -1,8 +1,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "minilibx/mlx_int.h"
-# include "minilibx/mlx.h"
+# include "minilibx-linux/mlx_int.h"
+# include "minilibx-linux/mlx.h"
 # include <math.h>
 # include "libft/libft.h"
 # include <stdio.h>
@@ -34,7 +34,9 @@ typedef struct s_fractal
 	char	*name;
 	char	*first_param;
 	char 	*second_param;
+	int color;
 	double	x_max;
+	char *addr;
 	double	x_min;
 	double	y_max;
 	double	y_min;

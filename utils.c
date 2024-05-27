@@ -40,3 +40,11 @@ double ft_atof(const char *str)
 		return  (sign * (result));
 }
 
+int handle_keys(int key, t_fractal *fractal)
+{
+	if (key == 65293)
+		kill_window(fractal);
+	mlx_clear_window(fractal->mlx_ptr, fractal->win);
+	exit(0);
+	return (0);
+}

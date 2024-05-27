@@ -54,9 +54,9 @@ int main(int argc, char **argv)
 	fractal_init(&fractal);
 	init_values(&fractal);
 	mandelbrot_set(&fractal);
-	mlx_key_hook(fractal.win, handle_keys, &fractal);
-	mlx_hook(fractal.win, DestroyNotify, 
-	StructureNotifyMask, kill_window, &fractal);
+	//mlx_key_hook(fractal.win, handle_keys, &fractal);
+	//mlx_hook(fractal.win, DestroyNotify, 
+	//StructureNotifyMask, kill_window, &fractal);
 	mlx_loop(fractal.mlx_ptr);
 	(void)argv;
 	mlx_destroy_window(fractal.mlx_ptr, fractal.win);

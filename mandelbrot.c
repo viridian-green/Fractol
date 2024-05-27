@@ -2,12 +2,21 @@
 
 //Mimicks the mlx_pixel_put function
 //Writes the pixels in a 2d image: colors each pixel at x and y coordinates
+
+
+
+//this function is the problem somehow
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color)
 {
-	int	offset;
+	//int	offset;
 
-	offset = (y * fractal->image.size_line) + ((fractal->image.bpp / 8) * x);
-	*(unsigned int *)(fractal->image.pixel + offset) = color;
+	//offset = (y * fractal->image.size_line) + ((fractal->image.bpp / 8) * x);
+	//*(unsigned int *)(fractal->image.pixel + offset) = color;
+	char	*dst;
+
+	dst = fractal->addr + (y * fractal->image.size_line + x * (fractal->image.bpp / 8));
+	*(unsigned int *)dst = color;
+
 }
 
 
@@ -25,7 +34,8 @@ void init_values(t_fractal *fractal)
 	fractal->x_min = -2.0;
 	fractal->y_max = 2.0;
 	fractal->y_min = -2.0;
-	fractal->max_iter = 100; //Change this value to see if it still works
+	fractal->color = 0XFFB6CB;
+	fractal->max_iter = 50; //Change this value to see if it still works
 }
 
 void math(t_complex *comp, int x, int y, t_fractal *fractal)
@@ -49,30 +59,18 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
  //this means the point escapes to infinity and is outside the set
 	}
 	if (fractal->iter == fractal->max_iter)
-		my_mlx_pixel_put(x, y, fractal, 0x000000 * fractal->iter); //Case 2
+		my_mlx_pixel_put(x, y, fractal, 0x000000); //Case 2
 	else
-		my_mlx_pixel_put(x, y, fractal, 0xFFFFFF * fractal->iter); //Case 1
+		my_mlx_pixel_put(x, y, fractal,  0XFFFFFF * fractal->iter); //Case 1
 }
 
-int handle_keys(int key, t_fractal *fractal)
-{
-	if (key == 65293)
-	{
-		//mlx_destroy_window(fractal->mlx_ptr, fractal->win);
-		//exit(0);
-		kill_window(fractal);
-	}
-	//mlx_clear_window(fractal->mlx_ptr, fractal->win);
-	//exit(0);
-	return (0);
-}
+
 
 int kill_window(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_ptr, fractal->image.img_ptr);
 	mlx_destroy_window(fractal->mlx_ptr, fractal->win);
 	mlx_destroy_display(fractal->mlx_ptr);
-	//free(fractal->mlx_ptr);
 	exit(0);
 	return (0);
 }
@@ -104,17 +102,19 @@ void mandelbrot_set(t_fractal *fractal)
 	int x;
 	int y;
 
-	x = -1;
-	y = -1;
+	x = 0;
+	y = 0;
 
-	while (++y < HEIGHT)
+	while (y < HEIGHT)
 	{
-		x = -1;
-		while (++x < WIDTH)
+		x = 0;
+		while (x < WIDTH)
 		{
 			comp = map_pixel(&comp, x, y, fractal);
 			math(&comp, x, y, fractal);
+			x++;
 		}
+		y++;
 	}
 	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win, fractal->image.img_ptr, 0, 0);
 } 
