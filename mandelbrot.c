@@ -12,11 +12,10 @@ void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color)
 
 	//offset = (y * fractal->image.size_line) + ((fractal->image.bpp / 8) * x);
 	//*(unsigned int *)(fractal->image.pixel + offset) = color;
-	char	*dst;
+	int	dst;
 
 	dst = fractal->addr + (y * fractal->image.size_line + x * (fractal->image.bpp / 8));
-	*(unsigned int *)dst = color;
-
+	*(unsigned int *)offset = color;
 }
 
 

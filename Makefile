@@ -14,11 +14,15 @@ SRC = 	main.c \
 
 OBJ = $(SRC:.c=.o)
 
-libraries:
-	$(MAKE) -C minilibx-linux
+$(LIBFT):
 	$(MAKE) -C libft
 
-all: libraries $(NAME)
+$(MLX):
+	$(MAKE) -C minilibx-linux
+
+libraries: $(LIBFT) $(MLX)
+
+all: $(NAME)
 
 $(NAME): $(OBJ) libraries
 	$(CC) $(XTRAFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS)
