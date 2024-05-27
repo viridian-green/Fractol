@@ -4,18 +4,43 @@
 //Writes the pixels in a 2d image: colors each pixel at x and y coordinates
 
 
-
-//this function is the problem somehow
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color)
 {
-	//int	offset;
+	int offset;
 
-	//offset = (y * fractal->image.size_line) + ((fractal->image.bpp / 8) * x);
-	//*(unsigned int *)(fractal->image.pixel + offset) = color;
-	int	dst;
+	offset = (y * fractal->image.size_line) + ((fractal->image.bpp / 8) * x);
+	*(unsigned int *)(fractal->image.pixel + offset) = color;
+	//char	*dst;
 
-	dst = fractal->addr + (y * fractal->image.size_line + x * (fractal->image.bpp / 8));
-	*(unsigned int *)offset = color;
+	//dst = fractal->image.addr + (y * fractal->image.size_line + x * (fractal->image.bpp / 8));
+
+	//if (dst < fractal->image.addr || dst >= fractal->image.addr + (HEIGHT * fractal->image.size_line)) {
+    //    return;
+    //}
+	//*(unsigned int *)dst = color;
+}
+
+void math(t_complex *comp, int x, int y, t_fractal *fractal) {
+    t_complex z;
+    t_complex c;
+    double temp;
+
+    z.x = 0.0;
+    z.y = 0.0;
+    c.x = comp->x + fractal->move_y; // add move_y and move_x later for the zoom
+    c.y = comp->y + fractal->move_x;
+
+    int i;
+    for (i = 0; i < fractal->max_iter; i++) {
+        temp = z.x * z.x - z.y * z.y + c.x;
+        z.y = 2 * z.x * z.y + c.y;
+        z.x = temp;
+        if (z.x * z.x + z.y * z.y > 4) {
+            my_mlx_pixel_put(x, y, fractal, 0xFFFFFF * i); // Coloring based on iteration count
+            return;
+        }
+    }
+    my_mlx_pixel_put(x, y, fractal, 0x000000); // Pixel is inside the Mandelbrot set
 }
 
 
@@ -37,6 +62,7 @@ void init_values(t_fractal *fractal)
 	fractal->max_iter = 50; //Change this value to see if it still works
 }
 
+/*
 void math(t_complex *comp, int x, int y, t_fractal *fractal)
 {
 	t_complex z;
@@ -45,10 +71,10 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 
 	z.x = 0.0;
 	z.y = 0.0;
-	c.x = comp->x; //add move_y and move_x later for the zoom
-	c.y = comp->y;
+	c.x = comp->x + fractal->move_y; //add move_y and move_x later for the zoom
+	c.y = comp->y + fractal->move_x;
 	fractal->iter = 0;
-	while (++fractal->iter < fractal->max_iter)
+	while (++(fractal->iter) < fractal->max_iter)
 	{
 		temp = (z.x * z.x) - (z.y * z.y) + c.x;
 		z.y = 2 * z.x * z.y + c.y;
@@ -62,7 +88,7 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	else
 		my_mlx_pixel_put(x, y, fractal,  0XFFFFFF * fractal->iter); //Case 1
 }
-
+*/
 
 
 int kill_window(t_fractal *fractal)

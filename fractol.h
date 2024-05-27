@@ -24,6 +24,7 @@ typedef struct	s_image
 	int		bpp;
 	int		size_line;
 	int		endian;
+	char *addr;
 }	t_image;
 
 typedef struct s_fractal
@@ -36,7 +37,10 @@ typedef struct s_fractal
 	char 	*second_param;
 	int color;
 	double	x_max;
-	char *addr;
+	double offset_y;
+	double offset_x;
+	double move_x;
+	double move_y;
 	double	x_min;
 	double	y_max;
 	double	y_min;
