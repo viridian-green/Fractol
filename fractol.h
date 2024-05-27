@@ -59,4 +59,6 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal);
 
 int handle_keys(int key, t_fractal *fractal);
 
+//Clean and exit
+int kill_window(t_fractal *fractal);
 #endif

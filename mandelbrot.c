@@ -25,7 +25,7 @@ void init_values(t_fractal *fractal)
 	fractal->x_min = -2.0;
 	fractal->y_max = 2.0;
 	fractal->y_min = -2.0;
-	fractal->max_iter = 1000; //Change this value to see if it still works
+	fractal->max_iter = 100; //Change this value to see if it still works
 }
 
 void math(t_complex *comp, int x, int y, t_fractal *fractal)
@@ -42,31 +42,62 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	while (++fractal->iter < fractal->max_iter)
 	{
 		temp = (z.x * z.x) - (z.y * z.y) + c.x;
-		z.y = 2 * z.x * z.y + c.y; //making sure the imaginary part of the complex number is adequatily computed
+		z.y = 2 * z.x * z.y + c.y;
 		z.x = temp;
-		if ((z.x * z.x) + (z.y * z.y) >= 4) //this means the point escapes to infinity and is outside the set
-			break;
+		if ((z.x * z.x) + (z.y * z.y) >= 4)
+			break ; //making sure the imaginary part of the complex number is adequatily computed
+ //this means the point escapes to infinity and is outside the set
 	}
 	if (fractal->iter == fractal->max_iter)
 		my_mlx_pixel_put(x, y, fractal, 0x000000 * fractal->iter); //Case 2
 	else
 		my_mlx_pixel_put(x, y, fractal, 0xFFFFFF * fractal->iter); //Case 1
-
 }
 
 int handle_keys(int key, t_fractal *fractal)
 {
-	//t_fractal *p;
-	//p = fractal;
 	if (key == 65293)
 	{
-		mlx_destroy_window(fractal->mlx_ptr, fractal->win);
-		exit(0);
+		//mlx_destroy_window(fractal->mlx_ptr, fractal->win);
+		//exit(0);
+		kill_window(fractal);
 	}
-	mlx_clear_window(fractal->mlx_ptr, fractal->win);
+	//mlx_clear_window(fractal->mlx_ptr, fractal->win);
+	//exit(0);
 	return (0);
 }
 
+int kill_window(t_fractal *fractal)
+{
+	mlx_destroy_image(fractal->mlx_ptr, fractal->image.img_ptr);
+	mlx_destroy_window(fractal->mlx_ptr, fractal->win);
+	mlx_destroy_display(fractal->mlx_ptr);
+	//free(fractal->mlx_ptr);
+	exit(0);
+	return (0);
+}
+
+/*
+int handle_mouse(int button, int x, int y, t_fractal *fractal)
+{
+    double mouse_x = (double)x / WIDTH * (fractal->x_max - fractal->x_min) + fractal->x_min;
+    double mouse_y = (double)y / HEIGHT * (fractal->y_max - fractal->y_min) + fractal->y_min;
+    double zoom_factor;
+
+    if (button == 4) // Scroll up (zoom in)
+    {
+        zoom_factor = ZOOM_IN_FACTOR;
+    }
+    else if (button == 5) // Scroll down (zoom out)
+    {
+        zoom_factor = ZOOM_OUT_FACTOR;
+    }
+    else
+    {
+        return (0);
+    }        return (0);
+}
+*/
 void mandelbrot_set(t_fractal *fractal)
 {
 	t_complex comp;
