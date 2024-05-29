@@ -32,8 +32,8 @@ typedef struct s_fractal
 	void	*win;
 	t_image	image;
 	char	*name;
-	char	*first_param;
-	char 	*second_param;
+	double first_param;
+	double second_param;
 	int color;
 	double	x_max;
 	double offset_y;
@@ -57,6 +57,7 @@ double ft_atof(const char *str);
 
 //Initialization
 void init_values(t_fractal *fractal);
+int fractal_init(t_fractal *fractal);
 
 //Render fractol
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color);

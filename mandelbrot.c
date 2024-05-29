@@ -53,7 +53,7 @@ void mandelbrot(t_complex *comp, int x, int y, t_fractal *fractal)
 	return (i);
 }
 
-void julia(t_complex *comp, int x, int y, t_fractal *fractal)
+void julia(t_complex *comp, t_fractal *fractal)
 {
 	t_complex z;
 	t_complex c;

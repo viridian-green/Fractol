@@ -12,7 +12,7 @@ int handle_keys(int key, t_fractal *fractal)
 		fractal->zoom *= 0.5;
 	else if (key == 65361) //left arrow
 		fractal->zoom *= 2.0;
-	mandelbrot_set(fractal);
+	render_fractal(fractal);
 	return (0);
 }
 

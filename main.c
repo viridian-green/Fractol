@@ -9,8 +9,8 @@ int handle_arguments(t_fractal *fractal, char **argv)
 	{
 		if (argv[2] && argv[3])
 		{
-			fractal->first_param = argv[2];
-			fractal->second_param = argv[3];
+			fractal->first_param = ft_atof(argv[2]);
+			fractal->second_param = ft_atof(argv[3]);
 		}
 		return (1);
 	}
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		return (0);
 	fractal_init(&fractal);
 	init_values(&fractal);
-	mandelbrot_set(&fractal);
+	render_fractal(&fractal);
 	mlx_key_hook(fractal.win, handle_keys, &fractal);
 	//mlx_hook(fractal.win, handle_mouse, &fractal);
 	mlx_hook(fractal.win, DestroyNotify,
