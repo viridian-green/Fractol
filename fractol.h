@@ -64,7 +64,7 @@ void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color);
 void render_fractal(t_fractal *fractal);
 void mandelbrot(t_complex *comp, t_fractal *fractal);
 void julia(t_complex *comp, t_fractal *fractal);
-void mandel_vs_julia(t_complex *comp, int x, int y, t_fractal *fractal);
+void mandel_vs_julia(t_complex *comp, t_fractal *fractal);
 
 int handle_keys(int key, t_fractal *fractal);
 int handle_mouse(int button, int x, int y, t_fractal *fractal);

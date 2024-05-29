@@ -24,7 +24,6 @@ int main(int argc, char **argv)
 	if (handle_arguments(&fractal, argv) == 0)
 		return (0);
 	fractal_init(&fractal);
-	init_values(&fractal);
 	render_fractal(&fractal);
 	mlx_key_hook(fractal.win, handle_keys, &fractal);
 	//mlx_hook(fractal.win, handle_mouse, &fractal);

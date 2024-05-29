@@ -25,5 +25,6 @@ int fractal_init(t_fractal *fractal)
 	fractal->image.pixel = mlx_get_data_addr(fractal->image.img_ptr,
 	&fractal->image.bpp, &fractal->image.size_line, &fractal->image.endian);
 
+	init_values(fractal);
 	return (0);
 }

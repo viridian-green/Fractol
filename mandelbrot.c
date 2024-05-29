@@ -35,14 +35,13 @@ void mandelbrot(t_complex *comp, t_fractal *fractal)
 	t_complex z;
 	t_complex c;
 	double temp;
-	int i;
 
 	z.x = 0;
 	z.y = 0;
 	c.x = comp->x; // c is the point in plane which corresponds to pixel
 	c.y = comp->y;
-	i = 0;
-	while (++i < fractal->max_iter)
+	fractal->iter = 0;
+	while (++(fractal->iter) < fractal->max_iter)
 	{
 		temp = (z.x * z.x) - (z.y * z.y) + c.x;
 		z.y = 2 * z.x * z.y + c.y;
@@ -82,12 +81,12 @@ int kill_window(t_fractal *fractal)
 	return (0);
 }
 
-void mandel_vs_julia(t_complex *comp, int x, int y, t_fractal *fractal)
+void mandel_vs_julia(t_complex *comp, t_fractal *fractal)
 {
 	if (ft_strncmp(fractal->name, "mandelbrot", 10) == 0)
-		mandelbrot(&comp, fractal);
+		mandelbrot(comp, fractal);
 	else if (ft_strncmp(fractal->name, "julia", 10) == 0)
-		julia(&comp, fractal);
+		julia(comp, fractal);
 }
 
 void render_fractal(t_fractal *fractal)
@@ -95,7 +94,6 @@ void render_fractal(t_fractal *fractal)
 	t_complex comp;
 	int x;
 	int y;
-	int iter;
 
 	y = -1;
 	while (++y < HEIGHT)
@@ -104,7 +102,7 @@ void render_fractal(t_fractal *fractal)
 		while (++x < WIDTH)
 		{
 			comp = map_pixel(&comp, x, y, fractal);
-			mandel_vs_julia((&comp, x, y, fractal));
+			mandel_vs_julia(&comp,fractal);
 			if (fractal->iter == fractal->max_iter)
 				my_mlx_pixel_put(x, y, fractal, 0x000000);
 			else
