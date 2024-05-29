@@ -62,7 +62,7 @@ void init_values(t_fractal *fractal);
 //Mandelbrot
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color);
 void mandelbrot_set(t_fractal *fractal);
-void math(t_complex *comp, int x, int y, t_fractal *fractal);
+int math(t_complex *comp, int x, int y, t_fractal *fractal);
 
 int handle_keys(int key, t_fractal *fractal);
 int handle_mouse(int button, int x, int y, t_fractal *fractal);

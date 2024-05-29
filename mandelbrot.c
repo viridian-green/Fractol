@@ -3,7 +3,6 @@
 //Mimicks the mlx_pixel_put function
 //Writes the pixels in a 2d image: colors each pixel at x and y coordinates
 
-
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color)
 {
 	int offset;
@@ -32,18 +31,19 @@ void init_values(t_fractal *fractal)
 }
 
 
-void math(t_complex *comp, int x, int y, t_fractal *fractal)
+int math(t_complex *comp, int x, int y, t_fractal *fractal)
 {
 	t_complex z;
 	t_complex c;
 	double temp;
+	int i;
 
 	z.x = 0;
 	z.y = 0;
 	c.x = comp->x; //add move_y and move_x later for the zoom
 	c.y = comp->y;
-	fractal->iter = 0;
-	while (++(fractal->iter) < fractal->max_iter)
+	i = 0;
+	while (++i < fractal->max_iter)
 	{
 		temp = (z.x * z.x) - (z.y * z.y) + c.x;
 		z.y = 2 * z.x * z.y + c.y;
@@ -51,7 +51,7 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 		if ((z.x * z.x) + (z.y * z.y) >= 4)
 			break ; //this means the point escapes to infinity and is outside the set
 	}
-	if (fractal->iter == fractal->max_iter)
+	if (i == fractal->max_iter)
 	{
 		my_mlx_pixel_put(x, y, fractal, 0x000000); //Case 2
 	}
@@ -59,6 +59,7 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	{
 		my_mlx_pixel_put(x, y, fractal,  get_color(fractal->iter)); //Case 1
 	}
+	return (i);
 }
 
 /*
