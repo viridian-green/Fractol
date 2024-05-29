@@ -44,6 +44,7 @@ typedef struct s_fractal
 	double	x_min;
 	double	y_max;
 	double	y_min;
+	double zoom;
 	int		iter;
 	int		max_iter;
 } t_fractal;
@@ -64,6 +65,7 @@ void mandelbrot_set(t_fractal *fractal);
 void math(t_complex *comp, int x, int y, t_fractal *fractal);
 
 int handle_keys(int key, t_fractal *fractal);
+int handle_mouse(int button, int x, int y, t_fractal *fractal);
 
 //Clean and exit
 int kill_window(t_fractal *fractal);
