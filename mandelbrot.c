@@ -54,15 +54,11 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	if (fractal->iter == fractal->max_iter)
 	{
 		my_mlx_pixel_put(x, y, fractal, 0x000000); //Case 2
-		get_color_function(fractal->iter);
 	}
 	else
-		my_mlx_pixel_put(x, y, fractal,  fractal->color * fractal->iter); //Case 1
-}
-
-get_color(int iter)
-{
-	get_color *
+	{
+		my_mlx_pixel_put(x, y, fractal,  get_color(fractal->iter)); //Case 1
+	}
 }
 
 /*

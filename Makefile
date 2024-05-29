@@ -10,6 +10,7 @@ MLX = minilibx-linux/libmlx.a
 SRC = 	main.c \
 		utils.c \
 		mandelbrot.c \
+		color.c \
 
 
 OBJ = $(SRC:.c=.o)

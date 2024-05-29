@@ -69,4 +69,16 @@ int handle_mouse(int button, int x, int y, t_fractal *fractal);
 
 //Clean and exit
 int kill_window(t_fractal *fractal);
+
+int	create_trgb(int t, int r, int g, int b);
+
+int	get_t(int trgb);
+
+int	get_r(int trgb);
+
+int	get_g(int trgb);
+
+int	get_b(int trgb);
+
+int get_color(int iter);
 #endif
