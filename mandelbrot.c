@@ -30,7 +30,7 @@ void init_values(t_fractal *fractal)
 	fractal->max_iter = 50; //Change this value to see if it still works
 }
 
-void mandelbrot(t_complex *comp, int x, int y, t_fractal *fractal)
+void mandelbrot(t_complex *comp, t_fractal *fractal)
 {
 	t_complex z;
 	t_complex c;
@@ -50,7 +50,6 @@ void mandelbrot(t_complex *comp, int x, int y, t_fractal *fractal)
 		if ((z.x * z.x) + (z.y * z.y) >= 4)
 			break ; //this means the point escapes to infinity and is outside the set
 	}
-	return (i);
 }
 
 void julia(t_complex *comp, t_fractal *fractal)
@@ -58,7 +57,6 @@ void julia(t_complex *comp, t_fractal *fractal)
 	t_complex z;
 	t_complex c;
 	double temp;
-	int i;
 
 	z.x = comp->x;
 	z.y = comp->y;
@@ -73,7 +71,6 @@ void julia(t_complex *comp, t_fractal *fractal)
 		if ((z.x * z.x) + (z.y * z.y) >= 4)
 			break ; //this means the point escapes to infinity and is outside the set
 	}
-	return (fractal->iter);
 }
 
 int kill_window(t_fractal *fractal)
@@ -87,10 +84,10 @@ int kill_window(t_fractal *fractal)
 
 void mandel_vs_julia(t_complex *comp, int x, int y, t_fractal *fractal)
 {
-	if (fractal->name == "mandelbrot")
-		mandelbrot(&comp, x, y, fractal);
-	else if (fractal->name == "julia")
-		julia(&comp, x, y, fractal);
+	if (ft_strncmp(fractal->name, "mandelbrot", 10) == 0)
+		mandelbrot(&comp, fractal);
+	else if (ft_strncmp(fractal->name, "julia", 10) == 0)
+		julia(&comp, fractal);
 }
 
 void render_fractal(t_fractal *fractal)
