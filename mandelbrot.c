@@ -38,10 +38,10 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 	t_complex c;
 	double temp;
 
-	z.x = 0.0;
-	z.y = 0.0;
-	c.x = comp->x + fractal->move_y; //add move_y and move_x later for the zoom
-	c.y = comp->y + fractal->move_x;
+	z.x = 0;
+	z.y = 0;
+	c.x = comp->x; //add move_y and move_x later for the zoom
+	c.y = comp->y;
 	fractal->iter = 0;
 	while (++(fractal->iter) < fractal->max_iter)
 	{
@@ -49,14 +49,22 @@ void math(t_complex *comp, int x, int y, t_fractal *fractal)
 		z.y = 2 * z.x * z.y + c.y;
 		z.x = temp;
 		if ((z.x * z.x) + (z.y * z.y) >= 4)
-			break ; //making sure the imaginary part of the complex number is adequatily computed
- //this means the point escapes to infinity and is outside the set
+			break ; //this means the point escapes to infinity and is outside the set
 	}
 	if (fractal->iter == fractal->max_iter)
+	{
 		my_mlx_pixel_put(x, y, fractal, 0x000000); //Case 2
+		get_color_function(fractal->iter);
+	}
 	else
-		my_mlx_pixel_put(x, y, fractal,  0XFFFFFF * fractal->iter); //Case 1
+		my_mlx_pixel_put(x, y, fractal,  fractal->color * fractal->iter); //Case 1
 }
+
+get_color(int iter)
+{
+	get_color *
+}
+
 /*
 int handle_mouse(int button, int x, int y, t_fractal *fractal)
 {
