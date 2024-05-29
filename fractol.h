@@ -11,7 +11,6 @@ typedef struct s_complex
 {
 	//real n
 	double x;
-
 	//imaginary n
 	double y;
 
@@ -59,10 +58,12 @@ double ft_atof(const char *str);
 //Initialization
 void init_values(t_fractal *fractal);
 
-//Mandelbrot
+//Render fractol
 void my_mlx_pixel_put(int x, int y, t_fractal *fractal, int color);
-void mandelbrot_set(t_fractal *fractal);
-int math(t_complex *comp, int x, int y, t_fractal *fractal);
+void render_fractal(t_fractal *fractal);
+void mandelbrot(t_complex *comp, int x, int y, t_fractal *fractal);
+void julia(t_complex *comp, int x, int y, t_fractal *fractal);
+void mandel_vs_julia(t_complex *comp, int x, int y, t_fractal *fractal);
 
 int handle_keys(int key, t_fractal *fractal);
 int handle_mouse(int button, int x, int y, t_fractal *fractal);
@@ -70,15 +71,12 @@ int handle_mouse(int button, int x, int y, t_fractal *fractal);
 //Clean and exit
 int kill_window(t_fractal *fractal);
 
+//Coloring functions
 int	create_trgb(int t, int r, int g, int b);
-
 int	get_t(int trgb);
-
 int	get_r(int trgb);
-
 int	get_g(int trgb);
-
 int	get_b(int trgb);
-
 int get_color(int iter);
+
 #endif

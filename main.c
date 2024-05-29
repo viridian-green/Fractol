@@ -18,45 +18,17 @@ int handle_arguments(t_fractal *fractal, char **argv)
 		return (0);
 }
 
-int fractal_init(t_fractal *fractal)
-{
-	fractal->mlx_ptr = mlx_init();
-	if (!fractal->mlx_ptr)
-		return (1);
-
-	fractal->win = mlx_new_window(fractal->mlx_ptr, WIDTH, HEIGHT, "I <3 fractals");
-	if (fractal->win == NULL)
-	{
-		mlx_destroy_display(fractal->mlx_ptr);
-		free(fractal->mlx_ptr);
-		return (1);
-	}
-	//creates a blank image to be drawn into
-	fractal->image.img_ptr = mlx_new_image(fractal->mlx_ptr, WIDTH, HEIGHT);
-	if (fractal->image.img_ptr  == NULL)
-	{
-		mlx_destroy_display(fractal->mlx_ptr);
-		free(fractal->mlx_ptr);
-		return (1);
-	}
-	//allows us to modify the image later
-	fractal->image.pixel = mlx_get_data_addr(fractal->image.img_ptr,
-	&fractal->image.bpp, &fractal->image.size_line, &fractal->image.endian);
-
-	return (0);
-}
-
 int main(int argc, char **argv)
 {
 	t_fractal	fractal;
-	//if (handle_arguments(&fractal, argv) == 0)
-	//	return (0);
+	if (handle_arguments(&fractal, argv) == 0)
+		return (0);
 	fractal_init(&fractal);
 	init_values(&fractal);
 	mandelbrot_set(&fractal);
 	mlx_key_hook(fractal.win, handle_keys, &fractal);
-	//mlx_key_hook(fractal.win, handle_mouse, &fractal);
-	mlx_hook(fractal.win, DestroyNotify, 
+	//mlx_hook(fractal.win, handle_mouse, &fractal);
+	mlx_hook(fractal.win, DestroyNotify,
 	StructureNotifyMask, kill_window, &fractal);
 	mlx_loop(fractal.mlx_ptr);
 	(void)argv;

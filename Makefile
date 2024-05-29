@@ -11,6 +11,8 @@ SRC = 	main.c \
 		utils.c \
 		mandelbrot.c \
 		color.c \
+		events.c \
+		init.c \
 
 
 OBJ = $(SRC:.c=.o)
@@ -39,7 +41,7 @@ clean:
 	$(MAKE) -C minilibx-linux clean
 
 fclean: clean
-	rm -f $(NAME) 
+	rm -f $(NAME)
 	$(MAKE) -C libft fclean
 
 re: fclean all
