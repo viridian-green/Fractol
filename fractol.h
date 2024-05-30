@@ -32,8 +32,8 @@ typedef struct s_fractal
 	void	*win;
 	t_image	image;
 	char	*name;
-	double first_param;
-	double second_param;
+	double param_x;
+	double param_y;
 	int color;
 	double	x_max;
 	double offset_y;

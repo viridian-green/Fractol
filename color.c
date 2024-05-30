@@ -77,6 +77,6 @@ int get_color(int iter, int max_iter)
 {
 	int	color;
 	(void)max_iter;
-	color = iterations * 15;
+	color = iter * 25;
 	return (create_trgb(0, get_red(color), get_green(color), get_blue(color)));
 }
