@@ -1,6 +1,6 @@
 #include "fractol.h"
-#include <math.h>
 
+/*
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
@@ -52,3 +52,31 @@ int get_color(int iter, int max_iter)
     //int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
     //int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
     //return create_trgb(0, r, g, b);
+*/
+	int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	get_red(int trgb)
+{
+	return ((trgb >> 16) & 0xFF);
+}
+
+int	get_green(int trgb)
+{
+	return ((trgb >> 8) & 0xFF);
+}
+
+int	get_blue(int trgb)
+{
+	return ((trgb & 0xFF));
+}
+
+int get_color(int iter, int max_iter)
+{
+	int	color;
+	(void)max_iter;
+	color = iterations * 15;
+	return (create_trgb(0, get_red(color), get_green(color), get_blue(color)));
+}
