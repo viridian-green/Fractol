@@ -1,7 +1,7 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g 
 XTRAFLAGS = -Ilibft
-MLX_FLAGS = -Lmlx -L/usr/lib/X11 -lXext -lX11
+MLX_FLAGS = -Lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
 NAME = fractol
 LIBFT = libft/libft.a

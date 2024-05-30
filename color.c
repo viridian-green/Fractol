@@ -1,4 +1,5 @@
 #include "fractol.h"
+#include <math.h>
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -30,13 +31,16 @@ int get_color(int iter, int max_iter)
     int color;
     color = iter * 25;
 	(void)max_iter;
+	int r;
+	int g;
+	int b;
 	r = get_r(color);
     g = get_g(color);
     b = get_b(color);
 
     // Increase brightness by scaling the RGB values
-    r = r + (255 - r) * 0.5;
-    g = g + (255 - g) * 0.5;
+    //r = r + (255 - r) * 0.5;
+    //g = g + (255 - g) * 0.5;
     b = b + (255 - b) * 0.5;
 
     return create_trgb(get_t(color), r, g, b);
