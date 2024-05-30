@@ -25,9 +25,13 @@ int	get_b(int trgb)
 	return (trgb & 0xFF);
 }
 
-int get_color(int iter)
+int get_color(int iter, int max_iter)
 {
-    int color;
-    color = iter * 15;
-	return(create_trgb(get_t(color), get_r(color), get_g(color), get_b(color)));
+    double color;
+    color = double(iter) / max_iter;
+	//int r = (int)(9 * (1 - t) * t * t * t * 255);
+    //int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+    //int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+    //return create_trgb(0, r, g, b);
+	return(create_trgb(0, get_r(color), get_g(color), get_b(color)));
 }
