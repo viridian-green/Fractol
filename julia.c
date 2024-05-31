@@ -1,17 +1,17 @@
-#include "fractol.h"
+#include "fractol.hs"
 
-void mandelbrot(t_complex *comp, t_fractal *fractal)
+void julia(t_complex *comp, t_fractal *fractal)
 {
 	t_complex z;
 	t_complex c;
 	double temp;
 
-	z.x = 0;
-	z.y = 0;
-	c.x = comp->x; // c is the point in plane which corresponds to pixel
-	c.y = comp->y;
+	z.x = comp->x;
+	z.y = comp->y;
+	c.x = fractal->param_x; // c is the point in plane which corresponds to pixel
+	c.y = fractal->param_y;
 	fractal->iter = 0;
-	while (++(fractal->iter) < fractal->max_iter)
+	while (++fractal->iter < fractal->max_iter)
 	{
 		temp = (z.x * z.x) - (z.y * z.y) + c.x;
 		z.y = 2 * z.x * z.y + c.y;

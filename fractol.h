@@ -49,8 +49,20 @@ typedef struct s_fractal
 } t_fractal;
 
 //Window dimensions
-# define WIDTH	1000
-# define HEIGHT	1000
+# define WIDTH	800
+# define HEIGHT	800
+
+// Keys
+# define KEY_ESC 65293
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
+
+//Error Message
+# define MESSAGE ("Invalid input.\nPlease enter './fractal <enter a fractal set>.\nAvailable fractal sets are\n 'mandelbrot' and 'julia'\n", 1);
+
+//Handle arguments
+int handle_arguments(t_fractal *fractal, char **argv, int argc);
+void get_julia_values(t_fractal *fractal, char **argv, int argc);
 
 //Utils
 double ft_atof(const char *str);
@@ -66,6 +78,7 @@ void mandelbrot(t_complex *comp, t_fractal *fractal);
 void julia(t_complex *comp, t_fractal *fractal);
 void mandel_vs_julia(t_complex *comp, t_fractal *fractal);
 
+//Handle events
 int handle_keys(int key, t_fractal *fractal);
 int handle_mouse(int button, int x, int y, t_fractal *fractal);
 

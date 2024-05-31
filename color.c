@@ -47,12 +47,12 @@ int get_color(int iter, int max_iter)
 	//return(create_trgb(get_t(color), get_r(color), get_g(color), get_b(color)));
 }
 
-
 	//int r = (int)(9 * (1 - t) * t * t * t * 255);
     //int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
     //int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
     //return create_trgb(0, r, g, b);
 */
+
 	int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);

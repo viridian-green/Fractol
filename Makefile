@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g 
+CFLAGS = -Wall -Werror -Wextra -g
 XTRAFLAGS = -Ilibft
 MLX_FLAGS = -Lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
@@ -13,6 +13,9 @@ SRC = 	main.c \
 		color.c \
 		events.c \
 		init.c \
+		render.c \
+		julia.c \
+		clean_and_exit.c \
 
 
 OBJ = $(SRC:.c=.o)
