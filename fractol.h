@@ -84,6 +84,7 @@ int handle_mouse(int button, int x, int y, t_fractal *fractal);
 
 //Clean and exit
 int kill_window(t_fractal *fractal);
+int exit_clean(t_fractal *fractal);
 
 //Coloring functions
 int	create_trgb(int t, int r, int g, int b);

@@ -1,14 +1,14 @@
 #include "fractol.h"
 
-void mandelbrot(t_complex *comp, t_fractal *fractal)
+void	mandelbrot(t_complex *comp, t_fractal *fractal)
 {
-	t_complex z;
-	t_complex c;
-	double temp;
+	t_complex	z;
+	t_complex	c;
+	double		temp;
 
 	z.x = 0;
 	z.y = 0;
-	c.x = comp->x; // c is the point in plane which corresponds to pixel
+	c.x = comp->x;
 	c.y = comp->y;
 	fractal->iter = 0;
 	while (++(fractal->iter) < fractal->max_iter)
@@ -17,6 +17,6 @@ void mandelbrot(t_complex *comp, t_fractal *fractal)
 		z.y = 2 * z.x * z.y + c.y;
 		z.x = temp;
 		if ((z.x * z.x) + (z.y * z.y) >= 4)
-			break ; //this means the point escapes to infinity and is outside the set
+			break ;
 	}
 }
