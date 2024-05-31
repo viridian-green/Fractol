@@ -9,6 +9,7 @@ void init_values(t_fractal *fractal)
 	fractal->color = 0XFFB6CB;
 	fractal->zoom = 1.0;
 	fractal->max_iter = 50; //Change this value to see if it still works
+	
 }
 
 int fractal_init(t_fractal *fractal)

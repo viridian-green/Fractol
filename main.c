@@ -17,9 +17,9 @@ void get_julia_values(t_fractal *fractal, char **argv, int argc)
 int handle_arguments(t_fractal *fractal, char **argv, int argc)
 {
 	fractal->name = argv[1];
-	if (ft_strncmp(fractal->name, "mandelbrot", 10) != 0 && argc == 2)
+	if ((ft_strncmp(fractal->name, "mandelbrot", 10) == 0) && argc == 2)
 		return (1);
-	else if (ft_strncmp(fractal->name, "julia", 5) != 0 && (argc == 3 || argc == 4))
+	else if ((ft_strncmp(fractal->name, "julia", 5) == 0))
 	{
 		get_julia_values(fractal, argv, argc);
 		return (1);
