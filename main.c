@@ -1,5 +1,12 @@
 #include "fractol.h"
 
+int exit_clean(t_fractal *fractal)
+{
+	mlx_destroy_display(fractal->mlx_ptr);
+	free(fractal->mlx_ptr);
+	return (1);
+}
+
 void get_julia_values(t_fractal *fractal, char **argv, int argc)
 {
 	if (argc == 4 && argv[2] && argv[3])
@@ -12,6 +19,8 @@ void get_julia_values(t_fractal *fractal, char **argv, int argc)
 		fractal->param_x = -0.7269;
 		fractal->param_y = 0.1889;
 	}
+	else 
+		exit(0);
 
 }
 int handle_arguments(t_fractal *fractal, char **argv, int argc)
@@ -28,12 +37,7 @@ int handle_arguments(t_fractal *fractal, char **argv, int argc)
 		return (0);
 }
 
-int exit_clean(t_fractal *fractal)
-{
-	mlx_destroy_display(fractal->mlx_ptr);
-	free(fractal->mlx_ptr);
-	return (1);
-}
+
 
 int main(int argc, char **argv)
 {
