@@ -2,9 +2,13 @@
 
 int exit_clean(t_fractal *fractal)
 {
+	mlx_destroy_image(fractal->mlx_ptr, fractal->image.img_ptr);
+	mlx_destroy_window(fractal->mlx_ptr, fractal->win);
 	mlx_destroy_display(fractal->mlx_ptr);
+	mlx_loop_end(fractal->mlx_ptr);
 	free(fractal->mlx_ptr);
-	exit(EXIT_FAILURE);
+	free(fractal);
+	exit(0);
 }
 
 void get_julia_values(t_fractal *fractal, char **argv, int argc)
@@ -21,7 +25,8 @@ void get_julia_values(t_fractal *fractal, char **argv, int argc)
 	}
 	else
 	{
-		printf("%s", MESSAGE);
+		ft_putstr_fd("Invalid input.Please enter './fractal' and a fractal set.\n \
+		Available fractal sets are 'mandelbrot' and 'julia'\n", 1);
 		exit(0);
 	}
 }
@@ -37,7 +42,7 @@ int handle_arguments(t_fractal *fractal, char **argv, int argc)
 		return (1);
 	}
 	else
-	return (0);
+		return (0);
 }
 
 int main(int argc, char **argv)
@@ -45,7 +50,8 @@ int main(int argc, char **argv)
 	t_fractal	fractal;
 	if (handle_arguments(&fractal, argv, argc) == 0)
 	{
-		printf("%s", MESSAGE);
+		ft_putstr_fd("Invalid input.Please enter './fractal' and a fractal set.\n \
+		Available fractal sets are 'mandelbrot' and 'julia'\n", 1);
 		exit(0);
 	}
 	fractal_init(&fractal);
@@ -55,6 +61,5 @@ int main(int argc, char **argv)
 	mlx_hook(fractal.win, DestroyNotify,
 	StructureNotifyMask, kill_window, &fractal);
 	mlx_loop(fractal.mlx_ptr);
-	mlx_destroy_window(fractal.mlx_ptr, fractal.win);
 	exit_clean(&fractal);
 }

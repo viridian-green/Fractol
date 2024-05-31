@@ -92,6 +92,6 @@ int	get_t(int trgb);
 int	get_r(int trgb);
 int	get_g(int trgb);
 int	get_b(int trgb);
-int get_color(int iter, int max_iter);
+int get_color(int iter);
 
 #endif

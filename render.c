@@ -44,7 +44,7 @@ void render_fractal(t_fractal *fractal)
 			if (fractal->iter == fractal->max_iter)
 				my_mlx_pixel_put(x, y, fractal, 0x000000);
 			else
-				my_mlx_pixel_put(x, y, fractal,  get_color(fractal->iter, fractal->max_iter));
+				my_mlx_pixel_put(x, y, fractal,  get_color(fractal->iter));
 		}
 	}
 	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win, fractal->image.img_ptr, 0, 0);
