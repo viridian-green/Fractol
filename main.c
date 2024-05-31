@@ -9,17 +9,17 @@ void get_julia_values(t_fractal *fractal, char **argv, int argc)
 		}
 	else if (argc == 2)
 	{
-		fractal->param_x = -0.766667;
-		fractal->param_y = -0.090000;
+		fractal->param_x = -0.7269;
+		fractal->param_y = 0.1889;
 	}
 
 }
 int handle_arguments(t_fractal *fractal, char **argv, int argc)
 {
 	fractal->name = argv[1];
-	if (ft_strncmp(fractal->name, "mandelbrot", 10) && argc == 2)
+	if (ft_strncmp(fractal->name, "mandelbrot", 10) != 0 && argc == 2)
 		return (1);
-	else if (ft_strncmp(fractal->name, "julia", 5) && argc == 3 || argc == 4)
+	else if (ft_strncmp(fractal->name, "julia", 5) != 0 && (argc == 3 || argc == 4))
 	{
 		get_julia_values(fractal, argv, argc);
 		return (1);
@@ -28,7 +28,7 @@ int handle_arguments(t_fractal *fractal, char **argv, int argc)
 		return (0);
 }
 
-void exit_clean(t_fractal *fractal)
+int exit_clean(t_fractal *fractal)
 {
 	mlx_destroy_display(fractal->mlx_ptr);
 	free(fractal->mlx_ptr);
@@ -38,9 +38,9 @@ void exit_clean(t_fractal *fractal)
 int main(int argc, char **argv)
 {
 	t_fractal	fractal;
-	if (handle_arguments(&fractal, argv, ac) == 0)
+	if (handle_arguments(&fractal, argv, argc) == 0)
 	{
-		printf(MESSAGE); //does it work if argc == 1?
+		//printf(MESSAGE); //does it work if argc == 1?
 		return (1);
 	}
 	fractal_init(&fractal);

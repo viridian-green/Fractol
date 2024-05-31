@@ -1,4 +1,4 @@
-#include "fractol.hs"
+#include "fractol.h"
 
 void julia(t_complex *comp, t_fractal *fractal)
 {
@@ -11,7 +11,7 @@ void julia(t_complex *comp, t_fractal *fractal)
 	c.x = fractal->param_x; // c is the point in plane which corresponds to pixel
 	c.y = fractal->param_y;
 	fractal->iter = 0;
-	while (++fractal->iter < fractal->max_iter)
+	while (++(fractal->iter) < fractal->max_iter)
 	{
 		temp = (z.x * z.x) - (z.y * z.y) + c.x;
 		z.y = 2 * z.x * z.y + c.y;

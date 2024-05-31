@@ -58,7 +58,7 @@ typedef struct s_fractal
 # define KEY_LEFT 65361
 
 //Error Message
-# define MESSAGE ("Invalid input.\nPlease enter './fractal <enter a fractal set>.\nAvailable fractal sets are\n 'mandelbrot' and 'julia'\n", 1);
+# define MESSAGE "Invalid input.\nPlease enter './fractal <enter a fractal set>.\nAvailable fractal sets are\n 'mandelbrot' and 'julia'\n"                                                                                                               
 
 //Handle arguments
 int handle_arguments(t_fractal *fractal, char **argv, int argc);
