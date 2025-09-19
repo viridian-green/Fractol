@@ -1,35 +1,160 @@
-ractol: Interactive Fractal Renderer with MiniLibX
-Introduction
-The concept of fractals was introduced by mathematician Benoit Mandelbrot in 1974, derived from the Latin word fractus, meaning "broken" or "fractured." A fractal is a complex mathematical pattern that remains self-similar at any scale, appearing infinitely detailed no matter how much you zoom in.
+# Fract'ol: Fractal Explorer with MiniLibX
 
-Many natural phenomena, such as Romanesco cabbage or snowflakes, exhibit fractal-like structures. With fractol, you will generate stunning fractals yourself and explore the mesmerizing world of infinite complexity!
+## 📋 Table of Contents
 
-Features
-Supports two main fractals:
-Mandelbrot set
-Julia set (with customizable parameters)
-Smooth zooming using the mouse wheel for deep exploration.
-Interactive controls for real-time adjustments.
-Color customization to enhance fractal depth and aesthetics.
-Event handling for smooth window management.
-Project Requirements
-Written in C, following the 42 Norm.
-Uses the MiniLibX library for graphics rendering.
-No global variables allowed.
-Proper memory management to prevent leaks.
-A Makefile with standard rules (all, clean, fclean, re).
-Usage
+- [About](#about)
+- [Project Overview](#project-overview)
+- [Program Specifications](#program-specifications)
+- [Installation & Usage](#installation--usage)
+- [Fractal Types](#fractal-types)
+- [Implementation Details](#implementation-details)
+- [Controls & Features](#controls--features)
+- [Testing & Validation](#testing--validation)
+- [Makefile Targets](#makefile-targets)
 
-Compile the project using:
-make
-Run the program with one of the available fractal types:
+## About
 
+**Fract'ol** is a computer graphics project that generates and explores mathematical fractals using the MiniLibX library. This program allows users to visualize complex fractal patterns, including the Mandelbrot set and Julia sets, with interactive zooming and color manipulation.
+
+## Project Overview
+
+Fract'ol demonstrates:
+- **Complex number mathematics** and fractal algorithms
+- **Computer graphics programming** with MiniLibX
+- **Interactive event handling** (keyboard, mouse)
+- **Real-time rendering optimization**
+- **Color theory applications** for visualization
+
+### Key Features
+- Multiple fractal types (Mandelbrot, Julia sets)
+- Infinite zoom capability with mouse wheel
+- Smooth window management and event handling
+- Color palette customization
+- Parameterized Julia sets
+
+## Program Specifications
+
+### Command Line Usage
+```bash
+./fractol [fractal_type] [parameters]
+```
+
+### Available Fractal Types
+- `mandelbrot` - Classic Mandelbrot set
+- `julia` - Julia set with default parameters
+- `julia [real] [imaginary]` - Custom Julia set with complex parameters
+
+### Examples
+```bash
+# Mandelbrot set
 ./fractol mandelbrot
-./fractol julia <real_part> <imaginary_part>
 
-Example for a custom Julia set:
+# Default Julia set
+./fractol julia
 
-./fractol julia -0.8 0.156
+# Custom Julia set with parameters
+./fractol julia -0.7 0.27
+./fractol julia 0.355 0.355
+./fractol julia -0.54 0.54
+```
 
-Conclusion
-This project is a hands-on introduction to computer graphics, complex numbers, and interactive rendering. By completing fractol, you’ll gain experience in graphics programming, event handling, and mathematical visualization while creating visually captivating fractals!
+## Installation & Usage
+
+### Dependencies
+- **MiniLibX** - School's graphical library
+- **math library** (`-lm` compiler flag)
+- **libft** - Custom C library (optional)
+
+### Compilation
+```bash
+git clone https://github.com/viridian-green/Fractol.git
+cd fractol
+make
+```
+
+### Running the Program
+```bash
+# Basic usage
+./fractol mandelbrot
+./fractol julia
+
+# With custom Julia parameters
+./fractol julia -0.4 0.6
+
+# Invalid parameter handling
+./fractol invalid
+# Output: Available fractals: mandelbrot, julia [real] [imaginary]
+```
+
+## Fractal Types
+
+### Mandelbrot Set
+- Defined by the recurrence relation: zₙ₊₁ = zₙ² + c
+- c represents each point in the complex plane
+- Colors indicate how quickly points diverge to infinity
+
+### Julia Set
+- Defined by: zₙ₊₁ = zₙ² + c (fixed c value)
+- c is a complex constant parameter
+- Different c values produce dramatically different patterns
+- Common Julia sets:
+  - c = -0.7 + 0.27i (classic)
+  - c = 0.355 + 0.355i (spiral)
+  - c = -0.54 + 0.54i (dendritic)
+
+
+## Controls & Features
+
+### Mouse Controls
+- **Scroll Up** - Zoom in at mouse position
+- **Scroll Down** - Zoom out
+- **Click and Drag** - Pan the view (optional enhancement)
+
+### Keyboard Controls
+- **ESC** - Close window and exit program
+- **Arrow Keys** - Pan the view
+
+### Window Features
+- Smooth window management (minimize, switch windows)
+- Clean exit on window close (red cross button)
+- Real-time rendering updates
+- High-performance rendering for smooth interaction
+
+### Memory Management
+```bash
+# Check for memory leaks
+valgrind --leak-check=full ./fractol mandelbrot
+
+# Test clean exit on various closure methods
+# ESC key, window close button, Ctrl-C
+```
+
+### Error Handling
+```bash
+# Test invalid parameters
+./fractol invalid_fractal
+./fractol julia invalid_number
+./fractol julia 0.5  # missing parameter
+
+```
+## Optimization Techniques
+
+### Rendering Optimization
+- **Pixel-based calculation** for parallel processing
+- **Optimized complex number arithmetic**
+- **Escape time algorithm** with early termination
+- **Progressive rendering** for smoother interaction
+
+### Memory Optimization
+- **Single image buffer** for display
+- **Efficient color calculation** without storage
+- **Clean resource management** with MiniLibX
+
+### Mathematical Optimization
+- **Periodicity checking** to avoid redundant calculations
+- **Smooth coloring algorithms** for better visual quality
+- **Mathematical approximations** for performance
+
+---
+
+**Note**: This implementation demonstrates advanced computer graphics programming with mathematical complexity. The solution provides an interactive fractal exploration experience with smooth performance, beautiful visualizations, and proper resource management while adhering to the MiniLibX library constraints.
