@@ -6,7 +6,7 @@
 /*   By: ademarti <ademarti@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 18:32:38 by ademarti          #+#    #+#             */
-/*   Updated: 2024/06/11 12:14:54 by ademarti         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:15:33 by ademarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 
 # include "minilibx-linux/mlx_int.h"
-# include "minilibx-linux/mlx.h"
+# include "minilibx-linux//mlx.h"
 # include <math.h>
 # include "libft/libft.h"
 

@@ -6,12 +6,12 @@ MLX_FLAGS = -Lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 NAME = fractol
 LIBFT = libft/libft.a
 MLX_PATH = minilibx-linux
-MLX:
-	@if [ ! -d "minilibx-linux/libmlx.a" ]; then \
-		git clone https://github.com/42paris/minilibx-linux.git minilibx-linux/libmlx.a; \
+MLX = minilibx-linux/libmlx.a
+$(MLX):
+	@if [ ! -d "$(MLX_PATH)" ]; then \
+		git clone https://github.com/42paris/minilibx-linux.git $(MLX_PATH); \
 	fi
-	@cmake $(MLX) -B $(MLX)/build && make -C $(MLX)/build -j4
-	@make --quiet -C $(MLX)/build -j4
+	@make -C $(MLX_PATH)
 
 SRC = 	main.c \
 		utils.c \
@@ -33,16 +33,21 @@ $(LIBFT):
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(MAKE) -C $(MLX_PATH)
-	$(CC) $(OBJS) -L$(MLX_PATH) $(LIBFT) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
+	$(CC) $(OBJS) -L$(MLX_PATH) -lmlx $(LIBFT) -lXext -lX11 -lm -o fractol
+
 
 clean:
 		rm -f $(OBJS)
-		$(MAKE) clean -C $(MLX_PATH)
+		rm -f $(OBJS)
+	@if [ -f "$(MLX_PATH)/Makefile" ] && grep -q '^clean:' $(MLX_PATH)/Makefile; then \
+		$(MAKE) clean -C $(MLX_PATH); \
+	else \
+		echo "Skipping MLX clean (no clean rule found)"; \
+	fi
+	$(MAKE) -C libft clean
 		$(MAKE) -C libft clean
 
 fclean: clean
-		rm -f $(NAME) $(MLX)
-		rm -f $(NAME) $(LIBFT)
 		$(MAKE) -C libft fclean
 
 re:		fclean all
