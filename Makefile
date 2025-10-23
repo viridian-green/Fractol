@@ -1,11 +1,17 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
-XTRAFLAGS = -Ilibft
+CFLAGS = -Wall -Werror -Wextra
+XTRAFLAGS = -g -Ilibft
 MLX_FLAGS = -Lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
 NAME = fractol
 LIBFT = libft/libft.a
-MLX = minilibx-linux/libmlx.a
+MLX_PATH = minilibx-linux
+MLX:
+	@if [ ! -d "minilibx-linux/libmlx.a" ]; then \
+		git clone https://github.com/42paris/minilibx-linux.git minilibx-linux/libmlx.a; \
+	fi
+	@cmake $(MLX) -B $(MLX)/build && make -C $(MLX)/build -j4
+	@make --quiet -C $(MLX)/build -j4
 
 SRC = 	main.c \
 		utils.c \
@@ -16,37 +22,29 @@ SRC = 	main.c \
 		render.c \
 		julia.c \
 		clean_and_exit.c \
+		utils_color.c
 
+OBJS = $(SRC:.c=.o)
 
-OBJ = $(SRC:.c=.o)
+all:	$(NAME) $(MLX)
 
 $(LIBFT):
 	$(MAKE) -C libft
 
-$(MLX):
-	$(MAKE) -C minilibx-linux
-
-libraries: $(LIBFT) $(MLX)
-
-all: $(NAME)
-
-$(NAME): $(OBJ) libraries
-	$(CC) $(XTRAFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(XTRAFLAGS) -c $< -o $@
-
-
+$(NAME): $(OBJS) $(LIBFT)
+	$(MAKE) -C $(MLX_PATH)
+	$(CC) $(OBJS) -L$(MLX_PATH) $(LIBFT) -lmlx_Linux -lX11 -lXext -lm -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
-	$(MAKE) -C libft clean
-	$(MAKE) -C minilibx-linux clean
+		rm -f $(OBJS)
+		$(MAKE) clean -C $(MLX_PATH)
+		$(MAKE) -C libft clean
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C libft fclean
+		rm -f $(NAME) $(MLX)
+		rm -f $(NAME) $(LIBFT)
+		$(MAKE) -C libft fclean
 
-re: fclean all
+re:		fclean all
 
 .PHONY: all clean fclean re

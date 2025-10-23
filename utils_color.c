@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   utils_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ademarti <ademarti@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 14:13:53 by ademarti          #+#    #+#             */
-/*   Updated: 2024/06/12 11:36:29 by ademarti         ###   ########.fr       */
+/*   Created: 2024/06/10 13:55:47 by ademarti          #+#    #+#             */
+/*   Updated: 2024/06/10 13:58:52 by ademarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(t_complex *comp, t_fractal *fractal)
+int	get_green(int trgb)
 {
-	t_complex	z;
-	t_complex	c;
-	double		temp;
+	return ((trgb >> 8) & 0xFF);
+}
 
-	z.x = comp->x;
-	z.y = comp->y;
-	c.x = fractal->param_x;
-	c.y = fractal->param_y;
-	fractal->iter = 0;
-	while (++(fractal->iter) < fractal->max_iter)
-	{
-		temp = (z.x * z.x) - (z.y * z.y) + c.x;
-		z.y = 2 * z.x * z.y + c.y;
-		z.x = temp;
-		if ((z.x * z.x) + (z.y * z.y) >= 4)
-			break ;
-	}
+int	get_blue(int trgb)
+{
+	return ((trgb & 0xFF));
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	get_red(int trgb)
+{
+	return ((trgb >> 16) & 0xFF);
 }
